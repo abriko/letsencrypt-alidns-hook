@@ -1,7 +1,23 @@
 # `letsencrypt.sh` 阿里域名DNS hook
 这是[letsencrypt.sh](https://github.com/lukas2511/letsencrypt.sh)脚本的 (一个[Let's Encrypt](https://letsencrypt.org/) ACME 客户端) 他允许你使用 [Alidns](http://netcn.console.aliyun.com/core/domain/tclist/) DNS 记录完成  `dns-01` 。运行需要提供Python运行环境和阿里云账户的AccessKey。
 
+##简便使用
+
+可以使用现成的Dokcer镜像简化使用：
+```
+$ docker pull abriko/letsencrypt-alidns
+$ docker run --rm \
+    -e ALI_DNS_SERVERS="223.5.5.5" \
+    -e KEY_ID="QynxPDkzWbhAgr" \
+    -e KEY_SECRET="9fBnhxPTx5RbhA" \
+    -v /home/user/certs:/app/letsencrypt.sh/certs \
+    abriko/letsencrypt-alidns \
+    example.com
+```
+请注意 `KEY_ID` 和 `KEY_SECRET` 是需要配置的项目，请参照下面配置节。
+
 ##安装步骤
+
 ```
 $ git clone https://github.com/lukas2511/letsencrypt.sh
 $ cd letsencrypt.sh
@@ -69,6 +85,21 @@ Processing example.com
 # Alidns  hook for `letsencrypt.sh`
 
 This a hook for [letsencrypt.sh](https://github.com/lukas2511/letsencrypt.sh) (a [Let's Encrypt](https://letsencrypt.org/) ACME client) that allows you to use [Alidns](http://netcn.console.aliyun.com/core/domain/tclist/) DNS records to respond to `dns-01` challenges. Requires Python and your Aliyun account being in the environment.
+
+##Quick use
+
+You can docker image to skip installation：
+```
+$ docker pull abriko/letsencrypt-alidns
+$ docker run --rm \
+    -e ALI_DNS_SERVERS="223.5.5.5" \
+    -e KEY_ID="QynxPDkzWbhAgr" \
+    -e KEY_SECRET="9fBnhxPTx5RbhA" \
+    -v /home/user/certs:/app/letsencrypt.sh/certs \
+    abriko/letsencrypt-alidns \
+    example.com
+```
+Notice `KEY_ID` and `KEY_SECRET` need change to your account token，Please follow Configuration section.
 
 ## Installation
 
